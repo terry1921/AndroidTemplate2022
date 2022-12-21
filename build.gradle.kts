@@ -1,7 +1,58 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.7.20" apply false
-    id("com.android.application") version "7.3.1" apply false
-    id("com.android.library") version "7.3.1" apply false
-    id("org.jetbrains.kotlin.android") version "1.7.20" apply false
+    alias(libs.plugins.spotless)
+}
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath(libs.agp)
+        classpath(libs.kotlin.gradlePlugin)
+        classpath(libs.hilt.plugin)
+    }
+}
+
+subprojects {
+    apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+        kotlinOptions.freeCompilerArgs += listOf(
+            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-Xopt-in=kotlin.time.ExperimentalTime",
+        )
+    }
+
+    extensions.configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+        kotlin {
+            target("**/*.kt")
+            targetExclude("$buildDir/**/*.kt")
+            ktlint().setUseExperimental(true).editorConfigOverride(
+                mapOf(
+                    "indent_size" to "2",
+                    "continuation_indent_size" to "2"
+                )
+            )
+            licenseHeaderFile(rootProject.file("spotless/spotless.license.kt"))
+            trimTrailingWhitespace()
+            endWithNewline()
+        }
+        format("kts") {
+            target("**/*.kts")
+            targetExclude("$buildDir/**/*.kts")
+            licenseHeaderFile(rootProject.file("spotless/spotless.license.kt"), "(^(?![\\/ ]\\*).*$)")
+        }
+        format("xml") {
+            target("**/*.xml")
+            targetExclude("**/build/**/*.xml")
+            licenseHeaderFile(rootProject.file("spotless/spotless.license.xml"), "(<[^!?])")
+        }
+    }
+
 }
