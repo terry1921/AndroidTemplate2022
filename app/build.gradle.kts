@@ -58,13 +58,51 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-compiler:2.44")
-    implementation("com.google.dagger:hilt-android-testing:2.44")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    // modules
+
+    // modules for unit test
+
+    // androidx
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.corektx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.fragment)
+    implementation(libs.androidx.lifecycle)
+    implementation(libs.androidx.startup)
+
+    // data binding
+    implementation(libs.bindables)
+
+    // di
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    androidTestImplementation(libs.hilt.testing)
+    kaptAndroidTest(libs.hilt.compiler)
+
+    // coroutines
+    implementation(libs.coroutines)
+
+    // whatIf
+    implementation(libs.whatif)
+
+    // bundler
+    implementation(libs.bundler)
+
+    // customViews
+    implementation(libs.recyclerview)
+    implementation(libs.baseAdapter)
+    implementation(libs.progressView)
+
+    // unit test
+    testImplementation(libs.junit)
+    testImplementation(libs.turbine)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.coroutines.test)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso)
+    androidTestImplementation(libs.android.test.runner)
 }
