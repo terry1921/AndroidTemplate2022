@@ -19,3 +19,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "My Template"
 include(":app")
+include(":core-test")
