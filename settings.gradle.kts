@@ -1,8 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":core-test")
-
-
 pluginManagement {
     repositories {
         google()
@@ -22,3 +19,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "My Template"
 include(":app")
+include(":core-test")
