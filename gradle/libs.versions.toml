@@ -2,7 +2,7 @@
 agp = "7.3.1"
 kotlin = "1.7.22"
 hilt = "2.44.2"
-material = "1.7.0"
+material = "1.8.0"
 androidxCoreKtx = "1.9.0"
 androidxAppcompat = "1.5.1"
 junit = "4.13.2"
