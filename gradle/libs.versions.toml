@@ -27,7 +27,7 @@ progressView = "1.1.3"
 androidxConstraintlayout = "2.1.4"
 
 [plugins]
-spotless = { id = "com.diffplug.spotless", version = "6.12.0" }
+spotless = { id = "com.diffplug.spotless", version = "6.14.0" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
