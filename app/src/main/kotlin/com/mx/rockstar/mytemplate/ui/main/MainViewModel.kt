@@ -25,10 +25,6 @@ class MainViewModel @Inject constructor(
     var message: String? by bindingProperty(null)
         private set
 
-    init {
-        Timber.d("init MainViewModel")
-    }
-
     private val fetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
     private val listFlow = fetchingIndex.flatMapLatest { page ->
         mainRepository.fetchData(
@@ -39,14 +35,18 @@ class MainViewModel @Inject constructor(
         )
     }
 
+    @get:Bindable
+    val response: String by listFlow.asBindingProperty(viewModelScope, "")
+
+    init {
+        Timber.d("init MainViewModel")
+    }
+
     fun updateMessage() {
         if (!isLoading) {
             message = ""
             fetchingIndex.value++
         }
     }
-
-    @get:Bindable
-    val response: String by listFlow.asBindingProperty(viewModelScope, "")
 
 }

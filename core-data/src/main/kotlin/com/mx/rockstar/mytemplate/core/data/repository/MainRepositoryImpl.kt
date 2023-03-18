@@ -21,8 +21,9 @@ class MainRepositoryImpl @Inject constructor(
         onError: (String?) -> Unit
     ): Flow<String> = flow {
         kotlinx.coroutines.delay(1000)
-        if (page in 1..10) emit("Flujo #${page} Terminando")
-        if (page > 10) onError("Ya son Muchas...")
+        if (page == 0) emit("Comenzamos...")
+        else if (page <= 10) emit("Flujo #${page} Terminando")
+        else onError("Ya son Muchas...")
     }.onStart { onStart() }.onCompletion { onComplete() }.flowOn(ioDispatcher)
 
 }
