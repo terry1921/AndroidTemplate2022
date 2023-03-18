@@ -59,8 +59,12 @@ android {
 
 dependencies {
     // modules
+    implementation(project(":core-data"))
 
     // modules for unit test
+    testImplementation(project(":core-network"))
+    testImplementation(project(":core-test"))
+    androidTestImplementation(project(":core-test"))
 
     // androidx
     implementation(libs.material)
@@ -86,6 +90,9 @@ dependencies {
     // whatIf
     implementation(libs.whatif)
 
+    // timber
+    implementation(libs.timber)
+
     // bundler
     implementation(libs.bundler)
 
@@ -93,6 +100,9 @@ dependencies {
     implementation(libs.recyclerview)
     implementation(libs.baseAdapter)
     implementation(libs.progressView)
+
+    // transformation animation
+    implementation(libs.transformationLayout)
 
     // unit test
     testImplementation(libs.junit)

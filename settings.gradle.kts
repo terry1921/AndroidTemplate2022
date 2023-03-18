@@ -19,4 +19,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "My Template"
 include(":app")
+include(":core-network")
+include(":core-model")
+include(":core-data")
 include(":core-test")
