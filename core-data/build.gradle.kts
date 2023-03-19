@@ -19,7 +19,7 @@ android {
 dependencies {
     api(project(":core-model"))
     implementation(project(":core-network"))
-    //implementation(project(":core-database"))
+    implementation(project(":core-database"))
     testImplementation(project(":core-test"))
 
     // coroutines

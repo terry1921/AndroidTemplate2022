@@ -63,6 +63,7 @@ dependencies {
 
     // modules for unit test
     testImplementation(project(":core-network"))
+    testImplementation(project(":core-database"))
     testImplementation(project(":core-test"))
     androidTestImplementation(project(":core-test"))
 
